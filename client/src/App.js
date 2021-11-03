@@ -1,23 +1,48 @@
-import logo from './logo.svg';
+import { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import socket from './app/socket/socket';
+import { setTickersDataAction, incrementAction, decrementAction } from './app/store/reducers/slice';
 
 function App() {
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.sliceTest.count);
+  const tickers = useSelector((state) => state.sliceTest.tickers);
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('You connected with ID: ', socket.id);
+    });
+    socket.on('ticker', (obj) => {
+      dispatch(setTickersDataAction(obj));
+      console.log(obj);
+    });
+    socket.emit('start', () => {});
+    socket.emit('my event', { event: 'one' });
+  }, []);
+
+  const asyncfoo = async () => {
+    setTimeout(() => {
+      dispatch(incrementAction());
+    }, 5000);
+  };
+  // const foo = () => {
+  //   dispatch(incrementAction());
+  //   console.log('inc', count);
+  // };
+  const foo2 = () => {
+    dispatch(decrementAction());
+    console.log('dec', count);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button type="button" onClick={asyncfoo}>
+        increment
+      </button>
+      <p>{count}</p>
+      <button type="button" onClick={foo2}>
+        decrement
+      </button>
     </div>
   );
 }
