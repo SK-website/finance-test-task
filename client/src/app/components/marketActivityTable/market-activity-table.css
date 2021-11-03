@@ -1,0 +1,34 @@
+.market-act-container {
+  margin: 0 auto;
+  width: 80%;
+}
+.market-activity-cell {
+  font-size: 0.8rem;
+}
+.ticker-cell {
+  font-weight: 600;
+}
+
+.table-title {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.minus-cell {
+  width: 50px;
+  height: 50px;
+  background: url('./../../../assets/icons/minus.svg') no-repeat center;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+
+.minus-cell:hover {
+  background: url('./../../../assets/icons/minus_hover.svg') no-repeat center;
+  color: transparent;
+}
+
+.hidden {
+  visibility: hidden;
+  font-size: 0.2;
+}

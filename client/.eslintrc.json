@@ -29,7 +29,9 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "jsx-a11y/no-onchange": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "no-param-reassign": ["error", { "props": false }]
+    "no-param-reassign": ["error", { "props": false }],
+    "array-callback-return": "off",
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }]
     // "operator-assignment": "off",
     // "no-return-assign": "off"
   },

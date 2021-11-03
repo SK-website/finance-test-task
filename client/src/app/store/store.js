@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import stateSlice from './reducers/slice';
+// import marketReducer from './reducers/market-reducer';
+import marketSlice from './reducers/market-reducer';
 
 // const rootReducer = combineReducers({
 //   sliceTest: stateSlice,
@@ -10,7 +11,7 @@ import stateSlice from './reducers/slice';
 // });
 const store = configureStore({
   reducer: {
-    sliceTest: stateSlice,
+    market: marketSlice,
   },
 });
 export default store;
