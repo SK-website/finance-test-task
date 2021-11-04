@@ -4,7 +4,7 @@ const http = require('http');
 const io = require('socket.io');
 const cors = require('cors');
 
-const FETCH_INTERVAL = 5000;
+let FETCH_INTERVAL = 5000;
 const PORT = process.env.PORT || 4000;
 
 const tickers = [
@@ -37,10 +37,8 @@ function getQuotes(socket) {
     yield: randomValue(0, 2, 2),
     last_trade_time: utcDate(),
   }));
-
   socket.emit('ticker', quotes);
 }
-
 function trackTickers(socket) {
   // run the first time immediately
   getQuotes(socket);
@@ -49,6 +47,10 @@ function trackTickers(socket) {
   const timer = setInterval(function () {
     getQuotes(socket);
   }, FETCH_INTERVAL);
+
+  socket.on('clear', function () {
+    clearInterval(timer);
+  });
 
   socket.on('disconnect', function () {
     clearInterval(timer);
@@ -75,7 +77,12 @@ socketServer.on('connection', (socket) => {
     console.log('This is Start works');
     trackTickers(socket);
   });
-  socket.on('my event', (obj) => console.log('This is My EVENT', obj));
+  // socket.on('my event', (obj) => console.log('This is My EVENT', obj));
+  socket.on('update_interval', (obj) => {
+    FETCH_INTERVAL = obj.int;
+    trackTickers(socket);
+    console.log('update_interval', obj.int);
+  });
 });
 
 server.listen(PORT, () => {

@@ -5,8 +5,11 @@ import './market-activity-table.css';
 
 const MarketActivityTable = () => {
   const dispatch = useDispatch();
-  const { tickers } = useSelector((state) => state.market);
-  const { userTickers } = useSelector((state) => state.market);
+  const { tickers, userTickers } = useSelector((state) => state.market);
+
+  const handelDeleteButtonClick = (id) => {
+    dispatch(removeTickerAction(id));
+  };
 
   return (
     <div className="market-act-container">
@@ -14,7 +17,6 @@ const MarketActivityTable = () => {
         <thead>
           <tr className="table-title">
             <th>ticker</th>
-            <th>name</th>
             <th>exchange</th>
             <th>last price, $</th>
             <th>change, $</th>
@@ -31,11 +33,12 @@ const MarketActivityTable = () => {
                 return isUserTicker ? (
                   <tr key={el.id}>
                     <td className="market-activity-cell ticker-cell">{el.ticker}</td>
-                    <td className="market-activity-cell">name</td>
                     <td className="market-activity-cell">{el.exchange}</td>
                     <td className="market-activity-cell">{el.price}</td>
-                    <td className="market-activity-cell">{el.change}</td>
-                    <td className="market-activity-cell">{el.change_percent}</td>
+                    <td className={`market-activity-cell ${el.change < 0 ? 'cell-down' : 'cell-up'}`}>{el.change}</td>
+                    <td className={`market-activity-cell ${el.change < 0 ? 'cell-down' : 'cell-up'}`}>
+                      {el.change_percent}
+                    </td>
                     <td className="market-activity-cell">{el.dividend}</td>
                     <td className="market-activity-cell">{el.yield}</td>
                     <td className="market-activity-cell">{el.last_trade_time}</td>
@@ -44,9 +47,9 @@ const MarketActivityTable = () => {
                       role="gridcell"
                       tabIndex="0"
                       onClick={() => {
-                        dispatch(removeTickerAction(el.ticker));
+                        handelDeleteButtonClick(el.ticker);
                       }}
-                      onKeyPress={() => dispatch(removeTickerAction(el.ticker))}
+                      onKeyPress={() => handelDeleteButtonClick(el.ticker)}
                     >
                       <p className="hidden">delete</p>
                     </td>
@@ -56,11 +59,17 @@ const MarketActivityTable = () => {
             : tickers.map((el) => (
                 <tr key={el.id}>
                   <td className="market-activity-cell ticker-cell">{el.ticker}</td>
-                  <td className="market-activity-cell">name</td>
                   <td className="market-activity-cell">{el.exchange}</td>
-                  <td className="market-activity-cell">{el.price}</td>
-                  <td className="market-activity-cell">{el.change}</td>
-                  <td className="market-activity-cell">{el.change_percent}</td>
+                  <td className="market-activity-cell">
+                    {el.price}
+                    <p>
+                      <img src="../../../assets/icons/arr_up" alt="" />
+                    </p>
+                  </td>
+                  <td className={`market-activity-cell ${el.change < 0 ? 'cell-down' : 'cell-up'}`}>{el.change}</td>
+                  <td className={`market-activity-cell ${el.change < 0 ? 'cell-down' : 'cell-up'}`}>
+                    {el.change_percent}
+                  </td>
                   <td className="market-activity-cell">{el.dividend}</td>
                   <td className="market-activity-cell">{el.yield}</td>
                   <td className="market-activity-cell">{el.last_trade_time}</td>
@@ -68,10 +77,8 @@ const MarketActivityTable = () => {
                     className="market-activity-cell minus-cell"
                     role="gridcell"
                     tabIndex="0"
-                    onClick={() => {
-                      dispatch(removeTickerAction(el.ticker));
-                    }}
-                    onKeyPress={() => dispatch(removeTickerAction(el.ticker))}
+                    onClick={() => handelDeleteButtonClick(el.ticker)}
+                    onKeyPress={() => handelDeleteButtonClick(el.ticker)}
                   >
                     <p className="hidden">delete</p>
                   </td>

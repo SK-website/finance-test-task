@@ -1,18 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import AddTickerDropdown from './app/components/addTickerDropdown/AddTickerDropdow';
+import ChangeIntervalDropdown from './app/components/changeIntervalDropdown/ChangeIntervalDropdown';
+import Header from './app/components/header/Header';
 import MarketActivityTable from './app/components/marketActivityTable/MarketActivityTable';
 import socket from './app/socket/socket';
-import {
-  setTickersDataAction,
-  incrementAction,
-  decrementAction,
-  setTickersFullDataAction,
-} from './app/store/reducers/market-reducer';
+import { setTickersFullDataAction } from './app/store/reducers/market-reducer';
 
 function App() {
   const dispatch = useDispatch();
-  // const { count } = useSelector((state) => state.market);
   const { tickers } = useSelector((state) => state.market);
   useEffect(() => {
     socket.on('connect', () => {
@@ -20,7 +17,6 @@ function App() {
     });
     socket.on('ticker', (obj) => {
       if (!tickers.length) dispatch(setTickersFullDataAction(obj));
-      dispatch(setTickersDataAction(obj));
     });
     socket.emit('start', () => {});
     socket.emit('my event', { event: 'one' });
@@ -41,15 +37,20 @@ function App() {
   // };
 
   return (
-    <div className="container-main">
-      <MarketActivityTable />
-      {/* <button type="button" onClick={asyncfoo}>
+    <div>
+      <Header />
+      <div className="container-main">
+        <MarketActivityTable />
+        <AddTickerDropdown />
+        <ChangeIntervalDropdown />
+        {/* <button type="button" onClick={asyncfoo}>
         increment
       </button>
       <p>{count}</p>
       <button type="button" onClick={foo2}>
         decrement
       </button> */}
+      </div>
     </div>
   );
 }
