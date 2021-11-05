@@ -3,11 +3,12 @@
   width: 80%;
 }
 .market-activity-cell {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  vertical-align: middle;
 }
 .ticker-cell {
   font-weight: 600;
-  vertical-align: middle;
 }
 
 .table-title {
@@ -37,11 +38,11 @@
 /* #dc3545 */
 
 .cell-up {
-  background: url('../../../assets/icons/arr_up.svg') no-repeat right 10% top 10%;
+  background: url('../../../assets/icons/arr_up.svg') no-repeat right 10% center;
   background-color: #b6f3c3;
 }
 
 .cell-down {
-  background: url('../../../assets/icons/arr_down.svg') no-repeat right 10% top 10%;
+  background: url('../../../assets/icons/arr_down.svg') no-repeat right 10% center;
   background-color: #f09a9a;
 }

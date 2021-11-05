@@ -10,7 +10,6 @@ const MarketActivityTable = () => {
   const handelDeleteButtonClick = (id) => {
     dispatch(removeTickerAction(id));
   };
-
   return (
     <div className="market-act-container">
       <Table striped bordered hover size="sm">
@@ -23,7 +22,7 @@ const MarketActivityTable = () => {
             <th>change, %</th>
             <th>divident</th>
             <th>yield</th>
-            <th>last trade time</th>
+            <th colSpan="2">last trade time</th>
           </tr>
         </thead>
         <tbody>
@@ -60,12 +59,7 @@ const MarketActivityTable = () => {
                 <tr key={el.id}>
                   <td className="market-activity-cell ticker-cell">{el.ticker}</td>
                   <td className="market-activity-cell">{el.exchange}</td>
-                  <td className="market-activity-cell">
-                    {el.price}
-                    <p>
-                      <img src="../../../assets/icons/arr_up" alt="" />
-                    </p>
-                  </td>
+                  <td className="market-activity-cell">{el.price}</td>
                   <td className={`market-activity-cell ${el.change < 0 ? 'cell-down' : 'cell-up'}`}>{el.change}</td>
                   <td className={`market-activity-cell ${el.change < 0 ? 'cell-down' : 'cell-up'}`}>
                     {el.change_percent}

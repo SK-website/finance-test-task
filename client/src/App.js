@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import AddTickerDropdown from './app/components/addTickerDropdown/AddTickerDropdow';
 import ChangeIntervalDropdown from './app/components/changeIntervalDropdown/ChangeIntervalDropdown';
+
 import Header from './app/components/header/Header';
 import MarketActivityTable from './app/components/marketActivityTable/MarketActivityTable';
 import socket from './app/socket/socket';
@@ -40,9 +41,12 @@ function App() {
     <div>
       <Header />
       <div className="container-main">
+        <div className="settings-container">
+          <AddTickerDropdown />
+          <ChangeIntervalDropdown />
+        </div>
         <MarketActivityTable />
-        <AddTickerDropdown />
-        <ChangeIntervalDropdown />
+
         {/* <button type="button" onClick={asyncfoo}>
         increment
       </button>

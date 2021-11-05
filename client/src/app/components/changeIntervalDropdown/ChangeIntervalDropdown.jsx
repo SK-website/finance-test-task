@@ -20,7 +20,12 @@ const ChangeIntervalDropdown = () => {
 
   return (
     <div>
-      <DropdownButton id="dropdown-basic-button" title="Set data refresh interval">
+      <DropdownButton
+        id="dropdown-basic-button"
+        variant="Secondary"
+        className="settings-item"
+        title="Set data refresh interval"
+      >
         {intervalList.map((el) => (
           <Dropdown.Item key={el} onClick={() => handelChangeIntervalButtonClick(el)}>
             {el}

@@ -1,6 +1,42 @@
 .header-container {
   width: 100%;
   margin-bottom: 4rem;
-  height: 4rem;
+  height: 4.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
   background: #dee2e6;
+}
+.header-wrapper {
+  margin: 0 auto;
+  width: 80%;
+}
+.nav-item {
+  margin-right: 2rem;
+  justify-content: start;
+  align-items: center;
+  text-transform: capitalize;
+}
+.nav-link {
+  padding: 0 0;
+  transition: all 0.3s ease-in-out;
+}
+.nav-link:hover {
+  transform: scale(1.1);
+}
+
+.header {
+  width: 0.1px;
+  height: 0.1px;
+  visibility: hidden;
+}
+.header-logo {
+  margin-left: 1rem;
+  margin-right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: url('../../../assets/icons/logo.svg') no-repeat center;
+  background-size: contain;
+  cursor: pointer;
 }
