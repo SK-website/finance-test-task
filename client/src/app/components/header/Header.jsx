@@ -7,23 +7,23 @@ const Header = () => (
     <div className="header-wrapper">
       <h1 className="header">IRS INvestments in reliable stocks</h1>
       <Nav activeKey="/home">
-        <Nav.Item className="nav-item">
-          <Nav.Link className="nav-item" href="/home" disabled>
+        <Nav.Item>
+          <Nav.Link className="nav-link" href="/home" disabled>
             market-activity
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item className="nav-item">
-          <Nav.Link className="nav-item" eventKey="link-1">
+        <Nav.Item>
+          <Nav.Link className="nav-link" eventKey="link-1">
             News and Insights
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item className="nav-item">
-          <Nav.Link className="nav-item" eventKey="link-2">
+        <Nav.Item>
+          <Nav.Link className="nav-link" eventKey="link-2">
             Solution
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item className="nav-item">
-          <Nav.Link className="nav-item" eventKey="link-3">
+        <Nav.Item>
+          <Nav.Link className="nav-link" eventKey="link-3">
             About
           </Nav.Link>
         </Nav.Item>

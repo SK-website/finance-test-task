@@ -15,7 +15,7 @@ const AddTickerDropdown = () => {
     <div>
       <DropdownButton
         id="dropdown-basic-button"
-        variant="Secondary"
+        variant="outline-secondary"
         className="settings-item"
         title="Add assets to watch list"
       >

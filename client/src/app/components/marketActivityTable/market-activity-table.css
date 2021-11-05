@@ -7,6 +7,11 @@
   font-weight: 400;
   vertical-align: middle;
 }
+
+.numbers-cell {
+  text-align: end;
+}
+
 .ticker-cell {
   font-weight: 600;
 }
@@ -38,11 +43,13 @@
 /* #dc3545 */
 
 .cell-up {
-  background: url('../../../assets/icons/arr_up.svg') no-repeat right 10% center;
-  background-color: #b6f3c3;
+  background: url('../../../assets/icons/arr_up.svg') no-repeat right 8% center;
 }
 
 .cell-down {
-  background: url('../../../assets/icons/arr_down.svg') no-repeat right 10% center;
-  background-color: #f09a9a;
+  background: url('../../../assets/icons/arr_down.svg') no-repeat right 8% center;
+}
+
+.table-sm .volatility {
+  padding-right: 30px;
 }

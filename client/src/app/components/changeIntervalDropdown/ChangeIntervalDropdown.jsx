@@ -22,7 +22,7 @@ const ChangeIntervalDropdown = () => {
     <div>
       <DropdownButton
         id="dropdown-basic-button"
-        variant="Secondary"
+        variant="outline-secondary"
         className="settings-item"
         title="Set data refresh interval"
       >
