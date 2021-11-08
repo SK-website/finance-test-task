@@ -14,13 +14,15 @@ const AddTickerDropdown = () => {
   return (
     <div>
       <DropdownButton
-        id="dropdown-basic-button"
+        // id="dropdown-basic-button"
+        data-testid="tickerAdd"
         variant="outline-secondary"
         className="settings-item"
         title="Add assets to watch list"
+        role="combobox"
       >
-        {tickers.map((el) => (
-          <Dropdown.Item key="el.ticker" onClick={() => handelAddTickerButtonClick(el.ticker)}>
+        {tickers?.map((el) => (
+          <Dropdown.Item key={el.ticker} value={el.ticker} onClick={() => handelAddTickerButtonClick(el.ticker)}>
             {el.ticker}
           </Dropdown.Item>
         ))}

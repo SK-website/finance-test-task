@@ -5,8 +5,8 @@ const Header = () => (
   <div className="header-container">
     <div className="header-logo" />
     <div className="header-wrapper">
-      <h1 className="header">IRS INvestments in reliable stocks</h1>
-      <Nav activeKey="/home">
+      <h1 className="header">IRS - INvestments in reliable stocks</h1>
+      <Nav activeKey="/home" data-testid="nav">
         <Nav.Item>
           <Nav.Link className="nav-link" href="/home" disabled>
             market-activity
@@ -14,17 +14,17 @@ const Header = () => (
         </Nav.Item>
         <Nav.Item>
           <Nav.Link className="nav-link" eventKey="link-1">
-            News and Insights
+            news and insights
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link className="nav-link" eventKey="link-2">
-            Solution
+            solution
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link className="nav-link" eventKey="link-3">
-            About
+            about
           </Nav.Link>
         </Nav.Item>
       </Nav>

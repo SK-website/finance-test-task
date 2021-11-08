@@ -5,11 +5,10 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   background: #dee2e6;
 }
 .header-wrapper {
-  margin: 0 auto;
   width: 80%;
 }
 .nav-item {

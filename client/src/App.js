@@ -1,43 +1,52 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 } from 'uuid';
 import './App.css';
-import AddTickerDropdown from './app/components/addTickerDropdown/AddTickerDropdow';
+import AddTickerDropdown from './app/components/addTickerDropdown/AddTickerDropdown';
 import ChangeIntervalDropdown from './app/components/changeIntervalDropdown/ChangeIntervalDropdown';
-
 import Header from './app/components/header/Header';
+import Loader from './app/components/loader/Loader';
 import MarketActivityTable from './app/components/marketActivityTable/MarketActivityTable';
 import socket from './app/socket/socket';
+import { closeLoaderAction } from './app/store/reducers/loder-reducer';
 import { setTickersFullDataAction } from './app/store/reducers/market-reducer';
 
 function App() {
   const dispatch = useDispatch();
-  const { tickers } = useSelector((state) => state.market);
+  const { isLoading } = useSelector((state) => state.loaderState);
+
   useEffect(() => {
     socket.on('connect', () => {
-      console.log('You connected with ID: ', socket.id);
+      dispatch(closeLoaderAction());
     });
-    socket.on('ticker', (obj) => {
-      if (!tickers.length) dispatch(setTickersFullDataAction(obj));
+
+    socket.on('connect_error', () => {
+      document.write(`Sorry, there seems to be an issue with the connection!<br/>`);
+    });
+
+    socket.on('connect_failed', () => {
+      document.write(`Sorry, there seems to be an issue with the connection!<br/>`);
+    });
+
+    socket.on('ticker', (arrOfTickers) => {
+      const tickersWithId = arrOfTickers.map((el) => {
+        // add id to every ticker
+        const ID = v4();
+        // change the number to negative to show rate cu
+        if (el.change < 70) {
+          el.change *= -1;
+          el.change_percent *= -1;
+        }
+        return { ...el, id: ID };
+      });
+      dispatch(setTickersFullDataAction(tickersWithId));
     });
     socket.emit('start', () => {});
     socket.emit('my event', { event: 'one' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const asyncfoo = async () => {
-  //   setTimeout(() => {
-  //     dispatch(incrementAction());
-  //   }, 5000);
-  // };
-  // const foo = () => {
-  //   dispatch(incrementAction());
-  //   console.log('inc', count);
-  // };
-  // const foo2 = () => {
-  //   dispatch(decrementAction());
-  //   console.log('dec', count);
-  // };
-
-  return (
+  return !isLoading ? (
     <div>
       <Header />
       <div className="container-main">
@@ -46,16 +55,10 @@ function App() {
           <ChangeIntervalDropdown />
         </div>
         <MarketActivityTable />
-
-        {/* <button type="button" onClick={asyncfoo}>
-        increment
-      </button>
-      <p>{count}</p>
-      <button type="button" onClick={foo2}>
-        decrement
-      </button> */}
       </div>
     </div>
+  ) : (
+    <Loader />
   );
 }
 

@@ -21,10 +21,7 @@
 .container-main {
   margin: 0 auto;
   min-width: 98%;
-  min-height: 100vh;
   box-sizing: border-box;
-  /* background-color: #ecf1fc; */
-  /* background-color: #5b5eec; */
 }
 .settings-container {
   margin: 0 auto;
